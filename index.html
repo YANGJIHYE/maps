@@ -1,41 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a159e6e48c7065f6b86bc451952e2a54"></script>
+    <meta charset="utf-8">
+    <title>드래그 가능한 마커 생성하기</title>
+    
 </head>
 <body>
-    
-    <div id="map" style="width:100%;height:350px;"></div>
-    
-    <script>
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = { 
-            center: new kakao.maps.LatLng(37.2682845089642, 127.0053823537847), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
-    
-    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-    
-    var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-        iwPosition = new kakao.maps.LatLng(37.2682845089642, 127.0053823537847), //인포윈도우 표시 위치입니다
-        iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-    
-    // 인포윈도우를 생성하고 지도에 표시합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        map: map, // 인포윈도우가 표시될 지도
-        position : iwPosition, 
-        content : iwContent,
-        removable : iwRemoveable
-    });
-          
-    // 아래 코드는 인포윈도우를 지도에서 제거합니다
-    // infowindow.close();    
-        
-    </script>
+<div id="map" style="width:100%;height:350px;"></div>    
+<p><em>마커를 드래그 해주세요!</em></p>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다 
+var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+// 마커가 드래그 가능하도록 설정합니다 
+marker.setDraggable(true); 
+</script>
 </body>
 </html>
